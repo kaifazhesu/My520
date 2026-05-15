@@ -101,27 +101,31 @@
 </div>
 <canvas class="canvas" width="1820" height="905"></canvas>
 <p class="text" style="color: #ed3073;">
-    We fell in love
+    <span id="span_dt_label"></span>
     <br/>
     <span id="span_dt_dt"></span>
 </p>
 <script language="javascript">
     function show_date_time() {
         window.setTimeout("show_date_time()", 1000);
-        BirthDay = new Date("1/20/2018 00:00:00");//这个日期是可以修改的
-        today = new Date();
-        timeold = (today.getTime() - BirthDay.getTime());
-        sectimeold = timeold / 1000
-        secondsold = Math.floor(sectimeold);
-        msPerDay = 24 * 60 * 60 * 1000
-        e_daysold = timeold / msPerDay
-        daysold = Math.floor(e_daysold);
-        e_hrsold = (e_daysold - daysold) * 24;
-        hrsold = Math.floor(e_hrsold);
-        e_minsold = (e_hrsold - hrsold) * 60;
-        minsold = Math.floor((e_hrsold - hrsold) * 60);
-        seconds = Math.floor((e_minsold - minsold) * 60);
-        span_dt_dt.innerHTML = daysold + "天" + hrsold + "小时" + minsold + "分" + seconds + "秒";
+        var target = new Date("5/20/2026 00:00:00");
+        var today = new Date();
+        var msPerDay = 24 * 60 * 60 * 1000;
+        if (today < target) {
+            var timeleft = target.getTime() - today.getTime();
+            var daysLeft = Math.floor(timeleft / msPerDay);
+            var hrsLeft = Math.floor((timeleft % msPerDay) / (60 * 60 * 1000));
+            var minsLeft = Math.floor((timeleft % (60 * 60 * 1000)) / (60 * 1000));
+            var secsLeft = Math.floor((timeleft % (60 * 1000)) / 1000);
+            span_dt_label.innerHTML = "距离我们的520还有";
+            span_dt_dt.innerHTML = daysLeft + "天" + hrsLeft + "小时" + minsLeft + "分" + secsLeft + "秒";
+        } else {
+            var h = today.getHours();
+            var m = today.getMinutes() < 10 ? "0" + today.getMinutes() : today.getMinutes();
+            var s = today.getSeconds() < 10 ? "0" + today.getSeconds() : today.getSeconds();
+            span_dt_label.innerHTML = "We fell in love";
+            span_dt_dt.innerHTML = today.getFullYear() + "年" + (today.getMonth() + 1) + "月" + today.getDate() + "日" + h + ":" + m + ":" + s;
+        }
     }
 
     show_date_time();
@@ -132,7 +136,7 @@
             S.Drawing.init('.canvas');
             document.body.classList.add('body--ready');
             //想说的话
-            S.UI.simulate("{{被表白者}}|I'm|许远志|Nice|to|Meet|You|#countdown 3|#time");
+            S.UI.simulate("董欣瑶|一起度过|第一个|520|#countdown 3|#time");
             S.Drawing.loop(function () {
                 S.Shape.render();
             });
