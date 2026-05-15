@@ -136,7 +136,7 @@
             S.Drawing.init('.canvas');
             document.body.classList.add('body--ready');
             //想说的话
-            S.UI.simulate("欣瑶|你和我|第一个|520|#countdown 3|#time");
+            S.UI.simulate("欣瑶|我们|第一|个520|#countdown 3|#time");
             S.Drawing.loop(function () {
                 S.Shape.render();
             });
@@ -537,7 +537,7 @@
                 setFontSize(fontSize);
                 s = Math.min(fontSize,
                     (shapeCanvas.width / shapeContext.measureText(l).width) * 0.8 * fontSize,
-                    (shapeCanvas.height / fontSize) * (isNumber(l) ? 1 : 0.45) * fontSize);
+                    (shapeCanvas.height / fontSize) * (isNumber(l) ? 1 : 0.7) * fontSize);
                 setFontSize(s);
 
                 shapeContext.clearRect(0, 0, shapeCanvas.width, shapeCanvas.height);
